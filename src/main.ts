@@ -9,7 +9,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
-import { environment } from './environments/environment.prod';
+import { environment } from './environments/environment';
 
 bootstrapApplication(AppComponent, {
   providers: [
