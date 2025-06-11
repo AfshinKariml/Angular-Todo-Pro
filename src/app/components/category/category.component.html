@@ -1,0 +1,112 @@
+<div class="container py-4">
+    <!-- عنوان و توضیحات -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-6 text-center">
+            <h1 class="fw-bold">دسته‌بندی‌های کارها</h1>
+            <p class="text-muted">مدیریت و دسته‌بندی وظایف</p>
+        </div>
+    </div>
+
+    <!-- فرم افزودن/ویرایش دسته‌بندی -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">
+                        <i class="fas {{isAddOrEdit ? 'fa-plus' : 'fa-edit'}} me-2"></i>
+                        {{isAddOrEdit ? 'افزودن دسته‌بندی جدید' : 'ویرایش دسته‌بندی'}}
+                    </h5>
+                    <form class="row g-3" #form="ngForm" (ngSubmit)="onSubmit(form)" (dragover)="onDragOver($event)"
+                        (drop)="onDrop($event)">
+                        <div class="col-md-9">
+                            <input type="text" class="form-control form-control-lg"
+                                [class.is-invalid]="categoryNameInput.invalid && (categoryNameInput.dirty || categoryNameInput.touched || form.submitted)"
+                                placeholder="دسته‌بندی جدید..." name="categoryName" #categoryNameInput="ngModel"
+                                [(ngModel)]="categoryName" required>
+                            <div class="invalid-feedback">
+                                لطفاً نام دسته‌بندی را وارد کنید
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid">
+                                    <i class="fas {{isAddOrEdit ? 'fa-plus' : 'fa-edit'}} me-2"></i>
+                                    {{isAddOrEdit ? 'افزودن' : 'ذخیره تغییرات'}}
+                                </button>
+                            </div>
+                        </div>
+                        @if (!isAddOrEdit) {
+                        <div class="col-12 mt-2">
+                            <button type="button" class="btn btn-link text-secondary"
+                                (click)="isAddOrEdit = true; categoryName = ''; form.resetForm()">
+                                <i class="fas fa-times me-1"></i> انصراف
+                            </button>
+                        </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- لیست دسته‌بندی‌ها -->
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8">
+            <h5 class="mb-3">
+                <i class="fas fa-list-alt me-2"></i>
+                لیست دسته‌بندی‌ها
+                <span class="badge bg-primary ms-2">{{categories.length}}</span>
+            </h5>
+        </div>
+    </div>
+
+    <!-- نمایش وضعیت خالی بودن لیست -->
+    @if (categories.length === 0) {
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-folder-open text-muted fs-1 mb-3"></i>
+                    <p class="mb-0">هنوز هیچ دسته‌بندی ثبت نشده است</p>
+                    <p class="small text-muted">برای شروع، یک دسته‌بندی جدید ایجاد کنید</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    } @else {
+    <!-- نمایش لیست دسته‌بندی‌ها -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="row">
+                @for (category of categories; track category.id) {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm" [style.border-color]="category.colorCode" draggable="true"
+                        (dragstart)="onDragStart($event, category.id!)">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h3 class="h5" [routerLink]="['/todo', category.id]" style="cursor: pointer;">
+                                    <i class="fas fa-folder text-primary me-2"></i>
+                                    {{category.categoryName}}
+                                </h3>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-primary"
+                                        (click)="categoryId = category.id!; categoryName = category.categoryName; isAddOrEdit = false;"
+                                        title="ویرایش دسته‌بندی">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="onDelete(category.id!)"
+                                        title="حذف دسته‌بندی">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary">{{category.todoCount}} وظیفه</span>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>

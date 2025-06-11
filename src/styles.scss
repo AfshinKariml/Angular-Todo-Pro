@@ -1,0 +1,64 @@
+:root {
+  --bs-primary: #3b5bcc;
+  --bs-primary-rgb: 59, 91, 204;
+  
+  --transition-duration: 0.3s;
+  --transition-timing: ease;
+}
+
+[data-bs-theme=dark] {
+  --bs-primary: #4a6ee0;
+  --bs-primary-rgb: 74, 110, 224;
+}
+
+@mixin hover-effect {
+  transition: transform var(--transition-duration) var(--transition-timing),
+              box-shadow var(--transition-duration) var(--transition-timing);
+  
+  &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 .5rem 1rem rgba(var(--bs-primary-rgb), .15);
+  }
+}
+
+.brand {
+  @include hover-effect;
+  color: var(--bs-primary);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card {
+  @include hover-effect;
+}
+
+.cdk-global-scrollblock {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+}
+
+html {
+  scrollbar-width: thin; 
+  scrollbar-color: #4a6ee0 #212529;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #212529;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a6ee0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #212529;
+}

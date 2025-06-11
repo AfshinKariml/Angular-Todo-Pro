@@ -1,0 +1,14 @@
+<header class="py-4 border-bottom user-select-none">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <h5 class="brand bg-body-tertiary p-3 rounded-3 shadow-sm mb-0">Todo 2025</h5>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-primary" (click)="toggleTheme()">
+                    <i class="fas" [class.fa-moon]="!isDarkTheme" [class.fa-sun]="isDarkTheme"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
