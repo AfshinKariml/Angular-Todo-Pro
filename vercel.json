@@ -5,7 +5,7 @@
       "destination": "/index.html"
     }
   ],
-  "buildCommand": "ng build --configuration production",
+  "buildCommand": "node build.js && ng build --configuration production",
   "outputDirectory": "dist/todo-pro-application",
   "installCommand": "npm install",
   "framework": "angular"
