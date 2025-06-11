@@ -1,16 +1,11 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|otf|map|json))$",
-      "headers": { "cache-control": "max-age=31536000" }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "buildCommand": "node build.js && ng build --configuration production",
-  "outputDirectory": "dist/todo-pro-application",
-  "installCommand": "npm install",
-  "framework": "angular"
+  "outputDirectory": "dist/todo-pro-application/browser",
+  "installCommand": "npm install"
 }
