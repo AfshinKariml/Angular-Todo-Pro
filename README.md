@@ -2,7 +2,7 @@
 
 **A simple task management app built with Angular** ✨
 
-[🌐 View Live Demo]()
+[🌐 View Live Demo](https://angular-todo-pro.vercel.app/)
 
 ## Features 🚀
 
@@ -40,4 +40,4 @@
 
 ---
 
-⭐ **[Try it now!]()**
+⭐ **[Try it now!](https://angular-todo-pro.vercel.app/)**
