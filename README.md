@@ -16,7 +16,7 @@
 
 1. **Clone & Install**
    ```bash
-   git clone https://github.com/AfshinKariml/Angular-Todo-Pro
+   git clone https://github.com/AfshinKariml/Angular-Todo-Pro.git
    cd taskflow-pro
    npm install
    ```
